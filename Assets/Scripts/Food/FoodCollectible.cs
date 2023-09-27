@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class FoodCollectible : MonoBehaviour, ICollect
 {
+
     [SerializeField, Label("Score Effect")] private SerializableInterface<IExecute> _scoreEffectSerialized;
 
     // Properties for the interfaces
