@@ -9,13 +9,18 @@ public class Score : ScriptableObject, IValue<int>, IAdd<int>, IReset, IObservab
 {
     [ShowNonSerializedField] private int _value;
 
+    private void OnEnable()
+    {
+        Reset();
+    }
     /// <summary>
     /// The score value.
     /// </summary>
     public int Value
     {
         get => _value;
-        set {
+        set
+        {
             _value = value;
             OnValueChanged?.Invoke(_value);
         }

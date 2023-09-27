@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Adds a score value to the player score when executed.
 /// </summary>
-public class FoodScoreEffect : MonoBehaviour, IExecute
+public class FoodScoreEffect : MonoBehaviour, IExecute, IReset
 {
     [Header("Data")]
     [SerializeField] private SerializableInterface<IAdd<int>> _scoreAddSerialized;
@@ -22,5 +22,11 @@ public class FoodScoreEffect : MonoBehaviour, IExecute
     {
         // Add score
         _scoreAdd.Add(_scoreValue);
+    }
+
+    public void Reset()
+    {
+
+        _scoreValue = 0;
     }
 }

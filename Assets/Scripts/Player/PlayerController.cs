@@ -1,6 +1,6 @@
-using UnityEngine;
 using NaughtyAttributes;
 using TNRD;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (Input.GetButtonDown(_jumpButton))
         {
+            Debug.Log("Je saute..");
             _jump.Jump();
         }
     }
