@@ -1,25 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 public class PlayerMovementTests
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void PlayerMovementTestsSimplePasses()
+    private GameObject _go;
+    private PlayerMovement _playerMovement;
+
+
+    [TearDown]
+    public void Teardown()
     {
-        // Use the Assert class to test conditions
+        Object.Destroy(_go);
+    }
+    [UnityTest]
+    public IEnumerator MovePlayerTest()
+    {
+        _go = new GameObject();
+        _playerMovement = _go.AddComponent<PlayerMovement>();
+        _playerMovement.rigidBody = _go.AddComponent<Rigidbody>();
+        //optionnel
+        _playerMovement.Animations = _go.AddComponent<PlayerAnimations>();
+        _playerMovement.Animations.Animator = _go.AddComponent<Animator>();
+
+        _playerMovement.speed = 5f;
+
+        _playerMovement.Move(new Vector2(1f, 1f));
+
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.AreNotEqual(Vector3.zero, _playerMovement.rigidBody.velocity);
     }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator PlayerMovementTestsWithEnumeratorPasses()
-    {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
-    }
 }

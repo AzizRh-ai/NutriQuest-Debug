@@ -14,7 +14,33 @@ public class PlayerMovement : MonoBehaviour, IMove
     [Header("Animations")]
     [SerializeField] private PlayerAnimations _animations;
 
+    //Ajout Getter,set pour les tests
+    public PlayerAnimations Animations
+    {
+        get { return _animations; }
+        set { _animations = value; }
+    }
+
     private Vector2 _movement;
+
+    public Rigidbody rigidBody
+    {
+        get { return _rb; }
+        set { _rb = value; }
+    }
+
+    public PlayerAnimations animations
+    {
+        //get { return _animations; }
+        set { _animations = value; }
+    }
+
+    public float speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
+
 
     /// <summary>
     /// Moves the player with the physics engine based on the given movement.

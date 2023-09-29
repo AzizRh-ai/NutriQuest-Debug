@@ -1,6 +1,5 @@
-using UnityEngine;
 using NaughtyAttributes;
-using TNRD;
+using UnityEngine;
 
 /// <summary>
 /// Handles the player's animations.
@@ -9,6 +8,12 @@ public class PlayerAnimations : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private Animator _animator;
+    //Ajout getter pour les tests
+    public Animator Animator
+    {
+        get { return _animator; }
+        set { _animator = value; }
+    }
 
     [Header("Parameters")]
     [SerializeField, AnimatorParam(nameof(_animator))] private string _speedParam = "Speed";

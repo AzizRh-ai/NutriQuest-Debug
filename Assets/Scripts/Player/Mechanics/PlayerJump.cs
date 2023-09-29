@@ -9,11 +9,11 @@ public class PlayerJump : MonoBehaviour, IJump
 {
     [Header("Components")]
     [SerializeField] private Rigidbody _rb;
+
     [SerializeField, Label("Ground Detector")] private SerializableInterface<IGrounded> _groundedSerialized;
 
     [Header("Parameters")]
     [SerializeField] private float _jumpForce = 5f;
-
     // Properties for the interfaces
     private IGrounded _grounded => _groundedSerialized.Value;
 

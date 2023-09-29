@@ -15,11 +15,40 @@ public class OnTrigger : MonoBehaviour
 
     [SerializeField] private bool _tagFiltering = true;
     [SerializeField, ShowIf(nameof(_tagFiltering)), Tag] private string _tag;
-    
+
     [Space(2)]
     [SerializeField] private bool _layerFiltering = true;
     [SerializeField, ShowIf(nameof(_layerFiltering))] private LayerMask _layerMask;
 
+    //----------------------------------
+    //Test
+    //----------------------------------
+    public UnityEvent<Collider> OnTriggerEnterEvent
+    {
+        get { return _onTriggerEnter; }
+        set { _onTriggerEnter = value; }
+    }
+    public bool tagFiltering => _tagFiltering;
+    public string cTag => _tag;
+    public LayerMask layerMask
+    {
+        get { return _layerMask; }
+        set { _layerMask = value; }
+    }
+
+    //----------------------------------
+    private void Awake()
+    {
+        _onTriggerEnter = new UnityEvent<Collider>();
+    }
+
+
+
+    //Test
+    public void TestTriggerEnter(Collider other)
+    {
+        OnTriggerEnter(other);
+    }
     /// <summary>
     /// Invokes the enter event if the collider is valid.
     /// </summary>
