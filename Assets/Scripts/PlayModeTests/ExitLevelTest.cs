@@ -20,9 +20,13 @@ public class ExitLevelTest
         Debug.Log("Start");
 
         _go = new GameObject();
+        _go.tag = "Player";
+
         onTrigger = _go.AddComponent<OnTrigger>();
-        onTrigger.tag = "Player";
+        onTrigger.cTag = "Player";
+
         BoxCollider collider = _go.AddComponent<BoxCollider>();
+
         collider.isTrigger = true;
 
         _go.layer = 6;

@@ -23,13 +23,19 @@ public class OnTrigger : MonoBehaviour
     //----------------------------------
     //Test
     //----------------------------------
+    public bool tagFiltering { get; set; }
     public UnityEvent<Collider> OnTriggerEnterEvent
     {
         get { return _onTriggerEnter; }
         set { _onTriggerEnter = value; }
     }
-    public bool tagFiltering => _tagFiltering;
-    public string cTag => _tag;
+
+    public string cTag
+    {
+        get { return _tag; }
+        set { _tag = value; }
+    }
+
     public LayerMask layerMask
     {
         get { return _layerMask; }
@@ -56,7 +62,7 @@ public class OnTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Checks tag and layer, based on what’s enabled
-        if (_tagFiltering && !other.CompareTag(_tag)) return;
+        if (_tagFiltering && (string.IsNullOrEmpty(_tag) || !other.CompareTag(_tag))) return;
         if (_layerFiltering && !(_layerMask == (_layerMask | (1 << other.gameObject.layer)))) return;
 
         _onTriggerEnter.Invoke(other);
